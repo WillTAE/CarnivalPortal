@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -43,28 +42,19 @@ public class BasePage {
     public boolean elementIsDisplayed(String locator){
         return Find(locator).isDisplayed();
     }
+
+    public boolean filterByElementIsDisplayed(String locator){
+        return Find(locator).isDisplayed();
+    }
     public void write(String locator, String text){
         Find(locator).clear();
         Find(locator).sendKeys(text);
     }
 
-    public void selectFromDropDownByValue(String locator, String valueToSelect){
-        Select dropdown = new Select(Find(locator));
-        dropdown.selectByValue(valueToSelect);
-    }
-
-    public void selectFromDropDownByText(String locator, String valueToSelect){
-        Select dropdown = new Select(Find(locator));
-        dropdown.selectByVisibleText(valueToSelect);
-    }
-
-    public void goToLinkText(String linkText){
-        driver.findElement(By.linkText(linkText)).click();
-    }
     public String getTextFromElement(String locator){
         return Find(locator).getText();
     }
-    public void validateInitialPopUp(String locator){
+    public void closeInitialPopUp(String locator){
         if(Find(locator).isDisplayed()){
             Find(locator).click();
         }

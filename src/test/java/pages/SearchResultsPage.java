@@ -12,6 +12,7 @@ public class SearchResultsPage extends BasePage{
     private String lbl_filterBy = "//div[@class='sc-eUXrtT fNlJAZ']/div/div";
     private String searchPrices = "//div[@class='sc-bALXmG kZgZhn']/div[2]";
     private String firsPriceInGrid = "(//div[@class='sc-bALXmG kZgZhn']/div[2])[1]";
+    private String lnk_viewItinerary = "(//a[contains(text(),'View Itinerary')])[1]";
     public SearchResultsPage() {
         super(driver);
     }
@@ -35,7 +36,12 @@ public class SearchResultsPage extends BasePage{
         return Integer.parseInt(firstPriceFromGrid);
     }
     public boolean validateFilterByIsPresentInSearchResults(){
-        return elementIsDisplayed(lbl_filterBy);
+        return filterByElementIsDisplayed(lbl_filterBy);
+    }
+
+    public ItineraryPage goToItineraryPage(){
+        selectElement(lnk_viewItinerary);
+        return new ItineraryPage();
     }
 
 }
